@@ -22,7 +22,7 @@ private int weaponNumber = 0;
 // Start is called before the first frame update
 void Start() {
 camObject = GameObject.Find("PlayerCamera");
-aimTarget = GameObject.Find("AimRef").transform;
+//aimTarget = GameObject.Find("AimRef").transform;
 if
 (this.gameObject.GetComponent<PhotonView>().IsMine == true
 )
@@ -31,13 +31,14 @@ if
 cam = camObject.GetComponent<CinemachineVirtualCamera>();
 cam.Follow = this.gameObject.transform;
 cam.LookAt = this.gameObject.transform;
-Invoke("SetLookAt", 0.1f);
+//Invoke("SetLookAt", 0.1f);
 }
 else
 {
     this.gameObject.GetComponent<PlayerMovement>().enabled = false;
 }
 }
+/*
 void SetLookAt() {
 if (aimTarget != null
 )
@@ -52,6 +53,7 @@ aimObjects[i].data.sourceObjects = target;
 rig.Build();
 }
 }
+*/
 // Update is called once per frame
 void Update() {
 if
