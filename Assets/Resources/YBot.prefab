@@ -7160,6 +7160,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHand: {fileID: 2360219125629794341}
   rightHand: {fileID: 6414938074290720485}
+  leftThumb: {fileID: 0}
+  aimObjects:
+  - {fileID: 5486114484589264968}
+  - {fileID: 4811132254447428102}
+  - {fileID: 5199679585375310635}
   rig: {fileID: 4428332534134423372}
   leftTargets:
   - {fileID: 8745645051454648657}
@@ -7169,6 +7174,7 @@ MonoBehaviour:
   - {fileID: 6504896880252667972}
   - {fileID: 4136248028554738646}
   - {fileID: 4180342550244772453}
+  thumbTargets: []
   weapons:
   - {fileID: 6695469206333624548}
   - {fileID: 6800001747824950678}
