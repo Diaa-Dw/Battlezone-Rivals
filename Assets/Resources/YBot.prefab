@@ -7111,7 +7111,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &1121644166890319977
 CapsuleCollider:
@@ -7291,6 +7291,9 @@ MonoBehaviour:
   - {fileID: 66369835181288761}
   - {fileID: 8566006574632933969}
   - {fileID: 459157223626466106}
+  - {fileID: 985333446991695228}
+  - {fileID: 7417312273986482563}
+  - {fileID: 6041200792173288350}
   - {fileID: 6231050334055917986}
   - {fileID: 3143595481511222314}
   - {fileID: 7939312810627247412}
@@ -9100,6 +9103,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7255992594019790844}
+    - targetCorrespondingSourceObject: {fileID: 3910777341545239941, guid: 6dacc251c78899646a2cdca9867b12e1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 985333446991695228}
   m_SourcePrefab: {fileID: 100100000, guid: 6dacc251c78899646a2cdca9867b12e1, type: 3}
 --- !u!4 &6314263730098358878 stripped
 Transform:
@@ -9125,6 +9132,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &985333446991695228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6695469206333624548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1001 &8057375381089452526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9229,6 +9252,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7772887292412561006}
+    - targetCorrespondingSourceObject: {fileID: 9032035327313937723, guid: 129441d84f6677445899188cd2c100f4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6041200792173288350}
   m_SourcePrefab: {fileID: 100100000, guid: 129441d84f6677445899188cd2c100f4, type: 3}
 --- !u!1 &1335792823471113429 stripped
 GameObject:
@@ -9248,6 +9275,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6041200792173288350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335792823471113429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!4 &1856152453539651183 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8508404612307607425, guid: 129441d84f6677445899188cd2c100f4,
@@ -9358,6 +9401,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 9187388722997265657}
+    - targetCorrespondingSourceObject: {fileID: 3411308027390953355, guid: ca41ecfb18a40ed4782291945630b1d1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7417312273986482563}
   m_SourcePrefab: {fileID: 100100000, guid: ca41ecfb18a40ed4782291945630b1d1, type: 3}
 --- !u!4 &6130988038845916972 stripped
 Transform:
@@ -9383,3 +9430,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7417312273986482563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800001747824950678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1

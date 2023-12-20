@@ -299,3 +299,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnTime: 5
+  weaponType: 1

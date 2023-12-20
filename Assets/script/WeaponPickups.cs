@@ -6,6 +6,7 @@ public class WeaponPickups : MonoBehaviour
 {
 private AudioSource audioPlayer;
 public float respawnTime = 5;
+public int weaponType = 1;
 // Start is called before the first frame update
 void Start()
 {
@@ -28,15 +29,37 @@ audioPlayer.Play();
 [PunRPC]
 void TurnOff()
 {
-this.transform.gameObject.GetComponent<Renderer>().enabled = false;
-this.transform.gameObject.GetComponent<Collider>().enabled = false;
+if (weaponType == 1)
+{
+this.transform.gameObject.GetComponent<Renderer>().enabled =
+false;
+this.transform.gameObject.GetComponent<Collider>().enabled =
+false;
+}
+else
+{
+this.transform.GetChild(0).gameObject.SetActive(false);
+this.transform.gameObject.GetComponent<Collider>().enabled =
+false;
+}
 StartCoroutine(WaitToRespawn());
 }
 [PunRPC]
 void TurnOn()
 {
-this.transform.gameObject.GetComponent<Renderer>().enabled = true;
-this.transform.gameObject.GetComponent<Collider>().enabled = true;
+if (weaponType == 1)
+{
+this.transform.gameObject.GetComponent<Renderer>().enabled =
+true;
+this.transform.gameObject.GetComponent<Collider>().enabled =
+true;
+}
+else
+{
+this.transform.GetChild(0).gameObject.SetActive(true);
+this.transform.gameObject.GetComponent<Collider>().enabled =
+true;
+}
 }
 IEnumerator WaitToRespawn()
 {
