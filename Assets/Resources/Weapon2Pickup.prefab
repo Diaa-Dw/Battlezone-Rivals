@@ -2175,6 +2175,7 @@ GameObject:
   - component: {fileID: 3104802590027010224}
   - component: {fileID: 9033009080544537589}
   - component: {fileID: -6479101259965580348}
+  - component: {fileID: 8572113721696968315}
   m_Layer: 0
   m_Name: Weapon2Pickup
   m_TagString: Untagged
@@ -2362,7 +2363,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2424,6 +2425,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+--- !u!114 &8572113721696968315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6131224881508463394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d025c7ccba4ec4f9cd9d5989acc56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnTime: 5
 --- !u!1 &6212513444352822105
 GameObject:
   m_ObjectHideFlags: 0
