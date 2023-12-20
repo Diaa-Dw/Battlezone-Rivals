@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviourPunCallbacks
 {
 public InputField playerNickname;
@@ -35,16 +37,8 @@ Application.Quit();
 public override void OnConnectedToMaster()
 {
 Debug.Log("I'm connected to the server!");
-PhotonNetwork.JoinRandomRoom();
+//PhotonNetwork.JoinRandomRoom();
+    SceneManager.LoadScene("lobby");
 }
-public override void OnJoinedRoom()
-{
-PhotonNetwork.LoadLevel("Floor layout");
-}
-public override void OnJoinRandomFailed(short returnCode, string
-message)
 
-{
-PhotonNetwork.CreateRoom("Arena1");
-}
 }
