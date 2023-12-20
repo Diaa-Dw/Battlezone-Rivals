@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
 using Cinemachine;
-public class WeaponChangeAdvanced : MonoBehaviour {
+public class WeaponChangeAdvanced : MonoBehaviour
+{
 public TwoBoneIKConstraint leftHand;
 public TwoBoneIKConstraint rightHand;
 public TwoBoneIKConstraint leftThumb;
@@ -19,15 +20,14 @@ public Transform[] rightTargets;
 public Transform[] thumbTargets;
 public GameObject[] weapons;
 private int weaponNumber = 0;
+private GameObject testForWeapons;
 // Start is called before the first frame update
-void Start() {
+void Start()
+{
 camObject = GameObject.Find("PlayerCamera");
 //aimTarget = GameObject.Find("AimRef").transform;
-if
-(this.gameObject.GetComponent<PhotonView>().IsMine == true
-)
+if (this.gameObject.GetComponent<PhotonView>().IsMine == true)
 {
-
 cam = camObject.GetComponent<CinemachineVirtualCamera>();
 cam.Follow = this.gameObject.transform;
 cam.LookAt = this.gameObject.transform;
@@ -35,16 +35,21 @@ cam.LookAt = this.gameObject.transform;
 }
 else
 {
-    this.gameObject.GetComponent<PlayerMovement>().enabled = false;
+this.gameObject.GetComponent<PlayerMovement>().enabled = false;
 }
-}
-/*
-void SetLookAt() {
-if (aimTarget != null
-)
+testForWeapons = GameObject.Find("Weapon1Pickup(Clone)");
+if (testForWeapons == null)
 {
-for
-(int i = 0; i < aimObjects.Length; i++)
+var spawner = GameObject.Find("SpawnScript");
+spawner.GetComponent<SpawnCharacters>().SpawnWeaponsStart();
+}
+}
+/* void SetLookAt()
+...rse\CyBattle\Assets\Scripts\WeaponChangeAdvanced.cs 2
+{
+if (aimTarget != null)
+{
+for (int i = 0; i < aimObjects.Length; i++)
 {
 var target = aimObjects[i].data.sourceObjects;
 target.SetTransform(0, aimTarget.transform);
@@ -52,23 +57,19 @@ aimObjects[i].data.sourceObjects = target;
 }
 rig.Build();
 }
-}
-*/
+}*/
 // Update is called once per frame
-void Update() {
-if
-(Input.GetMouseButtonDown(1))
+void Update()
+{
+if (Input.GetMouseButtonDown(1))
 {
 weaponNumber++;
-if (weaponNumber > weapons.Length
-- 1)
+if (weaponNumber > weapons.Length - 1)
 {
 weaponNumber = 0;
 }
-for
-(int i = 0; i < weapons.Length; i++)
+for (int i = 0; i < weapons.Length; i++)
 {
-
 weapons[i].SetActive(false);
 }
 weapons[weaponNumber].SetActive(true);
