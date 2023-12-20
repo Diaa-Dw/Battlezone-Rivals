@@ -15,8 +15,8 @@ void Start()
 if (PhotonNetwork.IsConnected)
 {
 PhotonNetwork.Instantiate(character.name, spawnPoints
-[PhotonNetwork.CountOfPlayers - 1].position, spawnPoints
-[PhotonNetwork.CountOfPlayers - 1].rotation);
+[PhotonNetwork.CurrentRoom.PlayerCount - 1].position, spawnPoints
+[PhotonNetwork.CurrentRoom.PlayerCount - 1].rotation);
 }
 }
 // Update is called once per frame

@@ -7022,6 +7022,7 @@ GameObject:
   - component: {fileID: 8576714201411084821}
   - component: {fileID: 623557392801709891}
   - component: {fileID: 323334691479818062}
+  - component: {fileID: 5107457613665561701}
   m_Layer: 0
   m_Name: YBot
   m_TagString: Player
@@ -7349,6 +7350,33 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
+--- !u!114 &5107457613665561701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5442033675656353156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5140a9fc54ef83c4c8a186076e26957e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonNumbers: 000000000100000002000000030000000400000005000000
+  viewID: 000000000000000000000000000000000000000000000000
+  colors:
+  - serializedVersion: 2
+    rgba: 1184436
+  - serializedVersion: 2
+    rgba: 1151755
+  - serializedVersion: 2
+    rgba: 947154
+  - serializedVersion: 2
+    rgba: 11801213
+  - serializedVersion: 2
+    rgba: 8259347
+  - serializedVersion: 2
+    rgba: 4079176
 --- !u!1 &5780417026997661546
 GameObject:
   m_ObjectHideFlags: 0
