@@ -10,7 +10,6 @@ public class WeaponChangeAdvanced : MonoBehaviour
 {
 public TwoBoneIKConstraint leftHand;
 public TwoBoneIKConstraint rightHand;
-public TwoBoneIKConstraint leftThumb;
 private CinemachineVirtualCamera cam;
 private GameObject camObject;
 public MultiAimConstraint[] aimObjects;
@@ -18,7 +17,6 @@ private Transform aimTarget;
 public RigBuilder rig;
 public Transform[] leftTargets;
 public Transform[] rightTargets;
-public Transform[] thumbTargets;
 public GameObject[] weapons;
 private int weaponNumber = 0;
 private GameObject testForWeapons;
@@ -26,6 +24,7 @@ private Image weaponIcon;
 private Text ammoAmtText;
 public Sprite[] weaponIcons;
 public int[] ammoAmts;
+
 // Start is called before the first frame update
 void Start()
 {
@@ -62,8 +61,7 @@ this.GetComponent<PhotonView>().RPC("Change",
 RpcTarget.AllBuffered);
 if (weaponNumber > weapons.Length - 1)
 {
-weaponIcon.GetComponent<Image>().sprite = weaponIcons
-[0];
+weaponIcon.GetComponent<Image>().sprite = weaponIcons[0];
 ammoAmtText.text = ammoAmts[0].ToString();
 weaponNumber = 0;
 }
@@ -72,12 +70,10 @@ for (int i = 0; i < weapons.Length; i++)
 weapons[i].SetActive(false);
 }
 weapons[weaponNumber].SetActive(true);
-weaponIcon.GetComponent<Image>().sprite = weaponIcons
-[weaponNumber];
+weaponIcon.GetComponent<Image>().sprite = weaponIcons[weaponNumber];
 ammoAmtText.text = ammoAmts[weaponNumber].ToString();
 leftHand.data.target = leftTargets[weaponNumber];
 rightHand.data.target = rightTargets[weaponNumber];
-leftThumb.data.target = thumbTargets[weaponNumber];
 rig.Build();
 }
 }
@@ -97,7 +93,6 @@ weapons[weaponNumber].SetActive(true);
 
 leftHand.data.target = leftTargets[weaponNumber];
 rightHand.data.target = rightTargets[weaponNumber];
-leftThumb.data.target = thumbTargets[weaponNumber];
 rig.Build();
 }
 }
