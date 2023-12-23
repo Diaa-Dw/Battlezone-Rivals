@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
 using Cinemachine;
+using UnityEngine.UI;
 public class WeaponChangeAdvanced : MonoBehaviour
 {
 public TwoBoneIKConstraint leftHand;
@@ -21,9 +22,15 @@ public Transform[] thumbTargets;
 public GameObject[] weapons;
 private int weaponNumber = 0;
 private GameObject testForWeapons;
+private Image weaponIcon;
+private Text ammoAmtText;
+public Sprite[] weaponIcons;
+public int[] ammoAmts;
 // Start is called before the first frame update
 void Start()
 {
+weaponIcon = GameObject.Find("WeaponUI").GetComponent<Image>();
+ammoAmtText = GameObject.Find("AmmoAmt").GetComponent <Text>();
 camObject = GameObject.Find("PlayerCamera");
 //aimTarget = GameObject.Find("AimRef").transform;
 if (this.gameObject.GetComponent<PhotonView>().IsMine == true)
@@ -44,19 +51,6 @@ var spawner = GameObject.Find("SpawnScript");
 spawner.GetComponent<SpawnCharacters>().SpawnWeaponsStart();
 }
 }
-/* void SetLookAt()
-{
-if (aimTarget != null)
-{
-for (int i = 0; i < aimObjects.Length; i++)
-{
-var target = aimObjects[i].data.sourceObjects;
-target.SetTransform(0, aimTarget.transform);
-aimObjects[i].data.sourceObjects = target;
-}
-rig.Build();
-}
-}*/
 // Update is called once per frame
 void Update()
 {
@@ -68,6 +62,9 @@ this.GetComponent<PhotonView>().RPC("Change",
 RpcTarget.AllBuffered);
 if (weaponNumber > weapons.Length - 1)
 {
+weaponIcon.GetComponent<Image>().sprite = weaponIcons
+[0];
+ammoAmtText.text = ammoAmts[0].ToString();
 weaponNumber = 0;
 }
 for (int i = 0; i < weapons.Length; i++)
@@ -75,6 +72,9 @@ for (int i = 0; i < weapons.Length; i++)
 weapons[i].SetActive(false);
 }
 weapons[weaponNumber].SetActive(true);
+weaponIcon.GetComponent<Image>().sprite = weaponIcons
+[weaponNumber];
+ammoAmtText.text = ammoAmts[weaponNumber].ToString();
 leftHand.data.target = leftTargets[weaponNumber];
 rightHand.data.target = rightTargets[weaponNumber];
 leftThumb.data.target = thumbTargets[weaponNumber];
@@ -93,8 +93,8 @@ for (int i = 0; i < weapons.Length; i++)
 {
 weapons[i].SetActive(false);
 }
-
 weapons[weaponNumber].SetActive(true);
+
 leftHand.data.target = leftTargets[weaponNumber];
 rightHand.data.target = rightTargets[weaponNumber];
 leftThumb.data.target = thumbTargets[weaponNumber];
