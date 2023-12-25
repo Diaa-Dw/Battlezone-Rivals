@@ -12,6 +12,7 @@ public int[] viewID;
 public Color32[] colors;
 private GameObject namesObject;
 private GameObject waitForPlayers;
+public AudioClip[] gunShotSounds;
 private void Start()
 {
 namesObject = GameObject.Find("NamesBG");
@@ -41,6 +42,26 @@ public void ChooseColor()
 {
 GetComponent<PhotonView>().RPC("AssignColor",
 RpcTarget.AllBuffered);
+}
+public void PlayGunShot(string name, int weaponNumber)
+{
+GetComponent<PhotonView>().RPC("PlaySound", RpcTarget.All, name,
+weaponNumber);
+}
+[PunRPC]
+void PlaySound(string name, int weaponNumber)
+{
+for (int i = 0; i < namesObject.GetComponent<NickNamesScript>
+().names.Length; i++)
+{
+if (name == namesObject.GetComponent<NickNamesScript>().names
+[i].text)
+{
+GetComponent<AudioSource>().clip = gunShotSounds
+[weaponNumber];
+GetComponent<AudioSource>().Play();
+}
+}
 }
 [PunRPC]
 void AssignColor()

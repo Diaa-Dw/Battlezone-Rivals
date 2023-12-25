@@ -10,6 +10,7 @@ public class WeaponChangeAdvanced : MonoBehaviour
 {
 public TwoBoneIKConstraint leftHand;
 public TwoBoneIKConstraint rightHand;
+public TwoBoneIKConstraint leftThumb;
 private CinemachineVirtualCamera cam;
 private GameObject camObject;
 public MultiAimConstraint[] aimObjects;
@@ -17,6 +18,7 @@ private Transform aimTarget;
 public RigBuilder rig;
 public Transform[] leftTargets;
 public Transform[] rightTargets;
+public Transform[] thumbTargets;
 public GameObject[] weapons;
 private int weaponNumber = 0;
 private GameObject testForWeapons;
@@ -24,7 +26,7 @@ private Image weaponIcon;
 private Text ammoAmtText;
 public Sprite[] weaponIcons;
 public int[] ammoAmts;
-
+public GameObject[] muzzleFlash;
 // Start is called before the first frame update
 void Start()
 {
@@ -53,6 +55,16 @@ spawner.GetComponent<SpawnCharacters>().SpawnWeaponsStart();
 // Update is called once per frame
 void Update()
 {
+if (Input.GetMouseButtonDown(0))
+{
+if (this.GetComponent<PhotonView>().IsMine == true)
+{
+GetComponent<DisplayColor>().PlayGunShot
+(GetComponent<PhotonView>().Owner.NickName, weaponNumber);
+this.GetComponent<PhotonView>().RPC("GunMuzzleFlash",
+RpcTarget.All);
+}
+}
 if (Input.GetMouseButtonDown(1) &&
 this.gameObject.GetComponent<PhotonView>().IsMine == true)
 {
@@ -61,7 +73,8 @@ this.GetComponent<PhotonView>().RPC("Change",
 RpcTarget.AllBuffered);
 if (weaponNumber > weapons.Length - 1)
 {
-weaponIcon.GetComponent<Image>().sprite = weaponIcons[0];
+weaponIcon.GetComponent<Image>().sprite = weaponIcons
+[0];
 ammoAmtText.text = ammoAmts[0].ToString();
 weaponNumber = 0;
 }
@@ -70,12 +83,20 @@ for (int i = 0; i < weapons.Length; i++)
 weapons[i].SetActive(false);
 }
 weapons[weaponNumber].SetActive(true);
-weaponIcon.GetComponent<Image>().sprite = weaponIcons[weaponNumber];
+weaponIcon.GetComponent<Image>().sprite = weaponIcons
+[weaponNumber];
 ammoAmtText.text = ammoAmts[weaponNumber].ToString();
 leftHand.data.target = leftTargets[weaponNumber];
 rightHand.data.target = rightTargets[weaponNumber];
+leftThumb.data.target = thumbTargets[weaponNumber];
 rig.Build();
 }
+}
+[PunRPC]
+void GunMuzzleFlash()
+{
+muzzleFlash[weaponNumber].SetActive(true);
+StartCoroutine(MuzzleOff());
 }
 [PunRPC]
 public void Change()
@@ -90,9 +111,20 @@ for (int i = 0; i < weapons.Length; i++)
 weapons[i].SetActive(false);
 }
 weapons[weaponNumber].SetActive(true);
-
 leftHand.data.target = leftTargets[weaponNumber];
 rightHand.data.target = rightTargets[weaponNumber];
+leftThumb.data.target = thumbTargets[weaponNumber];
 rig.Build();
+}
+IEnumerator MuzzleOff()
+{
+yield return new WaitForSeconds(0.03f);
+this.GetComponent<PhotonView>().RPC("MuzzleFlashOff",
+RpcTarget.All);
+}
+[PunRPC]
+void MuzzleFlashOff()
+{
+muzzleFlash[weaponNumber].SetActive(false);
 }
 }
