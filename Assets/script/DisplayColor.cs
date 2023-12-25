@@ -45,8 +45,7 @@ if (name == namesObject.GetComponent<NickNamesScript>().names
 [i].text)
 {
 namesObject.GetComponent<NickNamesScript>().healthbars
-[i].gameObject.GetComponent<Image>().fillAmount -=
-damageAmt / PhotonNetwork.CurrentRoom.PlayerCount;
+[i].gameObject.GetComponent<Image>().fillAmount -=damageAmt;
 }
 }
 }
