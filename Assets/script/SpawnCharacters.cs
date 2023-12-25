@@ -14,9 +14,8 @@ void Start()
 {
 if (PhotonNetwork.IsConnected)
 {
-PhotonNetwork.Instantiate(character.name, spawnPoints
-[PhotonNetwork.CurrentRoom.PlayerCount - 1].position, spawnPoints
-[PhotonNetwork.CurrentRoom.PlayerCount - 1].rotation);
+PhotonNetwork.Instantiate(character.name, spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount - 1].position,
+spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount - 1].rotation);
 }
 }
 // Update is called once per frame
@@ -27,8 +26,7 @@ public void SpawnWeaponsStart()
 {
 for (int i = 0; i < weapons.Length; i++)
 {
-PhotonNetwork.Instantiate(weapons[i].name, weaponSpawnPoints
-[i].position, weaponSpawnPoints[i].rotation);
+PhotonNetwork.Instantiate(weapons[i].name, weaponSpawnPoints[i].position, weaponSpawnPoints[i].rotation);
 }
 }
 }

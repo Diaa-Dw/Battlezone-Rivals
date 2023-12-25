@@ -6,11 +6,11 @@ using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
 using Cinemachine;
 using UnityEngine.UI;
+using Unity.Burst.CompilerServices;
 public class WeaponChangeAdvanced : MonoBehaviour
 {
 public TwoBoneIKConstraint leftHand;
 public TwoBoneIKConstraint rightHand;
-public TwoBoneIKConstraint leftThumb;
 private CinemachineVirtualCamera cam;
 private GameObject camObject;
 public MultiAimConstraint[] aimObjects;
@@ -18,7 +18,6 @@ private Transform aimTarget;
 public RigBuilder rig;
 public Transform[] leftTargets;
 public Transform[] rightTargets;
-public Transform[] thumbTargets;
 public GameObject[] weapons;
 private int weaponNumber = 0;
 private GameObject testForWeapons;
@@ -27,6 +26,9 @@ private Text ammoAmtText;
 public Sprite[] weaponIcons;
 public int[] ammoAmts;
 public GameObject[] muzzleFlash;
+private string shooterName;
+private string gotShotName;
+public float[] damageAmts;
 // Start is called before the first frame update
 void Start()
 {
@@ -63,6 +65,22 @@ GetComponent<DisplayColor>().PlayGunShot
 (GetComponent<PhotonView>().Owner.NickName, weaponNumber);
 this.GetComponent<PhotonView>().RPC("GunMuzzleFlash",
 RpcTarget.All);
+RaycastHit hit;
+Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+this.gameObject.layer = 2;
+if (Physics.Raycast(ray, out hit, 500))
+{
+if (hit.transform.gameObject.GetComponent<PhotonView>
+() != null)
+{
+gotShotName =
+hit.transform.gameObject.GetComponent<PhotonView>
+().Owner.NickName;
+}
+shooterName = GetComponent<PhotonView>().Owner.NickName;
+Debug.Log(gotShotName + " got hit by " + shooterName);
+}
+this.gameObject.layer = 0;
 }
 }
 if (Input.GetMouseButtonDown(1) &&
@@ -88,7 +106,6 @@ weaponIcon.GetComponent<Image>().sprite = weaponIcons
 ammoAmtText.text = ammoAmts[weaponNumber].ToString();
 leftHand.data.target = leftTargets[weaponNumber];
 rightHand.data.target = rightTargets[weaponNumber];
-leftThumb.data.target = thumbTargets[weaponNumber];
 rig.Build();
 }
 }
@@ -113,7 +130,6 @@ weapons[i].SetActive(false);
 weapons[weaponNumber].SetActive(true);
 leftHand.data.target = leftTargets[weaponNumber];
 rightHand.data.target = rightTargets[weaponNumber];
-leftThumb.data.target = thumbTargets[weaponNumber];
 rig.Build();
 }
 IEnumerator MuzzleOff()
