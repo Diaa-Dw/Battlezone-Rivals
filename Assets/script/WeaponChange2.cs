@@ -29,6 +29,7 @@ public GameObject[] muzzleFlash;
 private string shooterName;
 private string gotShotName;
 public float[] damageAmts;
+public bool isDead = false;
 // Start is called before the first frame update
 void Start()
 {
@@ -57,7 +58,7 @@ spawner.GetComponent<SpawnCharacters>().SpawnWeaponsStart();
 // Update is called once per frame
 void Update()
 {
-if (Input.GetMouseButtonDown(0))
+if (Input.GetMouseButtonDown(0) && isDead == false)
 {
 if (this.GetComponent<PhotonView>().IsMine == true)
 {
@@ -76,6 +77,10 @@ if (hit.transform.gameObject.GetComponent<PhotonView>
 gotShotName =
 hit.transform.gameObject.GetComponent<PhotonView>
 ().Owner.NickName;
+}
+if (hit.transform.gameObject.GetComponent<DisplayColor>
+() != null)
+{
 hit.transform.gameObject.GetComponent<DisplayColor>
 ().DeliverDamage
 (hit.transform.gameObject.GetComponent<PhotonView>
@@ -88,7 +93,8 @@ this.gameObject.layer = 0;
 }
 }
 if (Input.GetMouseButtonDown(1) &&
-this.gameObject.GetComponent<PhotonView>().IsMine == true)
+this.gameObject.GetComponent<PhotonView>().IsMine == true &&
+isDead == false)
 {
 //weaponNumber++;
 this.GetComponent<PhotonView>().RPC("Change",

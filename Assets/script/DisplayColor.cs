@@ -29,6 +29,10 @@ RemoveData();
 RoomExit();
 }
 }
+if (this.GetComponent<Animator>().GetBool("Hit") == true)
+{
+StartCoroutine(Recover());
+}
 }
 public void DeliverDamage(string name, float damageAmt)
 {
@@ -44,8 +48,24 @@ for (int i = 0; i < namesObject.GetComponent<NickNamesScript>
 if (name == namesObject.GetComponent<NickNamesScript>().names
 [i].text)
 {
+if (namesObject.GetComponent<NickNamesScript>().healthbars
+[i].gameObject.GetComponent<Image>().fillAmount > 0.1f)
+{
+this.GetComponent<Animator>().SetBool("Hit", true);
 namesObject.GetComponent<NickNamesScript>().healthbars
-[i].gameObject.GetComponent<Image>().fillAmount -=damageAmt;
+[i].gameObject.GetComponent<Image>().fillAmount -=
+damageAmt;
+}
+else
+{
+namesObject.GetComponent<NickNamesScript>().healthbars
+[i].gameObject.GetComponent<Image>().fillAmount = 0;
+this.GetComponent<Animator>().SetBool("Dead", true);
+this.gameObject.GetComponent<PlayerMovement>().isDead =
+true;
+this.gameObject.GetComponent<WeaponChangeAdvanced>
+().isDead = true;
+}
 }
 }
 }
@@ -123,5 +143,10 @@ yield return new WaitForSeconds(1);
 namesObject.GetComponent<NickNamesScript>().Leaving();
 Cursor.visible = true;
 PhotonNetwork.LeaveRoom();
+}
+IEnumerator Recover()
+{
+yield return new WaitForSeconds(0.03f);
+this.GetComponent<Animator>().SetBool("Hit", false);
 }
 }
