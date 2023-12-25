@@ -30,6 +30,26 @@ RoomExit();
 }
 }
 }
+public void DeliverDamage(string name, float damageAmt)
+{
+GetComponent<PhotonView>().RPC("GunDamage", RpcTarget.AllBuffered,
+name, damageAmt);
+}
+[PunRPC]
+void GunDamage(string name, float damageAmt)
+{
+for (int i = 0; i < namesObject.GetComponent<NickNamesScript>
+().names.Length; i++)
+{
+if (name == namesObject.GetComponent<NickNamesScript>().names
+[i].text)
+{
+namesObject.GetComponent<NickNamesScript>().healthbars
+[i].gameObject.GetComponent<Image>().fillAmount -=
+damageAmt / PhotonNetwork.CurrentRoom.PlayerCount;
+}
+}
+}
 void RemoveData()
 {
 GetComponent<PhotonView>().RPC("RemoveMe", RpcTarget.AllBuffered);

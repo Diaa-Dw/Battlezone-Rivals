@@ -76,6 +76,10 @@ if (hit.transform.gameObject.GetComponent<PhotonView>
 gotShotName =
 hit.transform.gameObject.GetComponent<PhotonView>
 ().Owner.NickName;
+hit.transform.gameObject.GetComponent<DisplayColor>
+().DeliverDamage
+(hit.transform.gameObject.GetComponent<PhotonView>
+().Owner.NickName, damageAmts[weaponNumber]);
 }
 shooterName = GetComponent<PhotonView>().Owner.NickName;
 Debug.Log(gotShotName + " got hit by " + shooterName);
