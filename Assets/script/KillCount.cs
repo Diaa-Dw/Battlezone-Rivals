@@ -19,7 +19,7 @@ public Text winnerText;
 // Start is called before the first frame update
 void Start() {
 killCountPanel = GameObject.Find("KillCountPanel");
-namesObject = GameObject.Find("namesBG");
+namesObject = GameObject.Find("NamesBG");
 killCountPanel.SetActive(false);
 winnerPanel.SetActive(false);
 }

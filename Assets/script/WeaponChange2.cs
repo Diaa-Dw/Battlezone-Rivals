@@ -38,11 +38,6 @@ private GameObject choosePanel;
 // Start is called before the first frame update
 void Start() {
 choosePanel = GameObject.Find("ChoosePanel");
-if (choosePanel == null)
-{
-    Debug.LogError("ChoosePanel not found in the scene. Make sure the object exists and is spelled correctly.");
-    return;
-}
 weaponIcon = GameObject.Find("WeaponUI").GetComponent<Image>();
 ammoAmtText = GameObject.Find("AmmoAmt").GetComponent <Text>();
 camObject = GameObject.Find("PlayerCamera");
