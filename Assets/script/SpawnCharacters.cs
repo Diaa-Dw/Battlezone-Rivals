@@ -14,14 +14,9 @@ void Start()
 {
 if (PhotonNetwork.IsConnected)
 {
-    StartCoroutine(SpawnPlayer());
+PhotonNetwork.Instantiate(character.name, spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount - 1].position,
+spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount - 1].rotation);
 }
-}
-private IEnumerator SpawnPlayer(){
-    yield return new WaitForSeconds(2);
-    PhotonNetwork.Instantiate(character.name, spawnPoints
-[PhotonNetwork.CurrentRoom.PlayerCount - 1].position, spawnPoints
-[PhotonNetwork.CurrentRoom.PlayerCount - 1].rotation);
 }
 // Update is called once per frame
 void Update()
@@ -31,8 +26,7 @@ public void SpawnWeaponsStart()
 {
 for (int i = 0; i < weapons.Length; i++)
 {
-PhotonNetwork.Instantiate(weapons[i].name, weaponSpawnPoints
-[i].position, weaponSpawnPoints[i].rotation);
+PhotonNetwork.Instantiate(weapons[i].name, weaponSpawnPoints[i].position, weaponSpawnPoints[i].rotation);
 }
 }
 }

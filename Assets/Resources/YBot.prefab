@@ -7451,6 +7451,10 @@ MonoBehaviour:
   - {fileID: 6630212367311297880}
   - {fileID: 3285689176525071201}
   - {fileID: 498811151554495833}
+  damageAmts:
+  - 0.1
+  - 0.5
+  - 0.3
 --- !u!114 &8576714201411084821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9409,7 +9413,7 @@ PrefabInstance:
     - target: {fileID: 3910777341545239941, guid: 6dacc251c78899646a2cdca9867b12e1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4399471379469242175, guid: 6dacc251c78899646a2cdca9867b12e1,
         type: 3}
@@ -9632,7 +9636,7 @@ PrefabInstance:
     - target: {fileID: 9032035327313937723, guid: 129441d84f6677445899188cd2c100f4,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
