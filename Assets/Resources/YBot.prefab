@@ -7254,6 +7254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6.5
   rotateSpeed: 100
+  isDead: 0
+  gameOver: 0
 --- !u!54 &1436563574698268222
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7455,6 +7457,7 @@ MonoBehaviour:
   - 0.1
   - 0.5
   - 0.3
+  isDead: 0
 --- !u!114 &8576714201411084821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7534,6 +7537,12 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 0
     Name: BlendH
+  - Type: 4
+    SynchronizeType: 2
+    Name: Hit
+  - Type: 4
+    SynchronizeType: 2
+    Name: Dead
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -7564,6 +7573,19 @@ MonoBehaviour:
     rgba: 16621153
   - serializedVersion: 2
     rgba: 15066597
+  teamColors:
+  - serializedVersion: 2
+    rgba: 2105576
+  - serializedVersion: 2
+    rgba: 2105576
+  - serializedVersion: 2
+    rgba: 2105576
+  - serializedVersion: 2
+    rgba: 16621153
+  - serializedVersion: 2
+    rgba: 16621153
+  - serializedVersion: 2
+    rgba: 16621153
   gunShotSounds:
   - {fileID: 8300000, guid: 93fba0b1bf5014543918fa775911b6a3, type: 3}
   - {fileID: 8300000, guid: 733a0ff7727334749a0381b7092162b3, type: 3}
@@ -8593,6 +8615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb85cc72e3e1f9b4f8c8e97c7be66fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
 --- !u!1 &7876726694902245893
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,8 +7,11 @@ public class Timer : MonoBehaviour
 {
 public Text minutesText;
 public Text secondsText;
-public int minutes = 4;
+public int minutes = 0;
 public int seconds = 59;
+public GameObject Canvas;
+[HideInInspector]
+public bool timeStop = false;
 public void BeginTimer()
 {
 GetComponent<PhotonView>().RPC("Count", RpcTarget.AllBuffered);
@@ -42,6 +45,12 @@ minutes -= 1;
 seconds = 59;
 minutesText.text = minutes.ToString();
 secondsText.text = seconds.ToString();
+}
+if (seconds == 0 && minutes <= 0)
+{
+Canvas.GetComponent<KillCount>().countDown = false;
+Canvas.GetComponent<KillCount>().TimeOver();
+timeStop = true;
 }
 }
 }

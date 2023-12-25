@@ -7,14 +7,14 @@ using UnityEngine.Animations.Rigging;
 using Cinemachine;
 using UnityEngine.UI;
 using Unity.Burst.CompilerServices;
-public class WeaponChangeAdvanced : MonoBehaviour
-{
+public class WeaponChangeAdvanced : MonoBehaviour {
 public TwoBoneIKConstraint leftHand;
 public TwoBoneIKConstraint rightHand;
 private CinemachineVirtualCamera cam;
 private GameObject camObject;
 public MultiAimConstraint[] aimObjects;
-private Transform aimTarget;
+private Transform aimTarget
+;
 public RigBuilder rig;
 public Transform[] leftTargets;
 public Transform[] rightTargets;
@@ -26,83 +26,95 @@ private Text ammoAmtText;
 public Sprite[] weaponIcons;
 public int[] ammoAmts;
 public GameObject[] muzzleFlash;
-private string shooterName;
-private string gotShotName;
+
+private string shooterName
+;
+private string gotShotName
+;
 public float[] damageAmts;
-public bool isDead = false;
+public bool isDead = false
+;
+private GameObject choosePanel;
 // Start is called before the first frame update
-void Start()
+void Start() {
+choosePanel = GameObject.Find("ChoosePanel");
+if (choosePanel == null)
 {
+    Debug.LogError("ChoosePanel not found in the scene. Make sure the object exists and is spelled correctly.");
+    return;
+}
 weaponIcon = GameObject.Find("WeaponUI").GetComponent<Image>();
 ammoAmtText = GameObject.Find("AmmoAmt").GetComponent <Text>();
 camObject = GameObject.Find("PlayerCamera");
+ammoAmts[0] = 60;
+ammoAmts[1] = 0;
+ammoAmts[2] = 0;
+ammoAmtText.text = ammoAmts[0].ToString();
 //aimTarget = GameObject.Find("AimRef").transform;
-if (this.gameObject.GetComponent<PhotonView>().IsMine == true)
+if
+(this.gameObject.GetComponent<PhotonView>().IsMine == true
+)
 {
 cam = camObject.GetComponent<CinemachineVirtualCamera>();
 cam.Follow = this.gameObject.transform;
 cam.LookAt = this.gameObject.transform;
 //Invoke("SetLookAt", 0.1f);
 }
-else
-{
-this.gameObject.GetComponent<PlayerMovement>().enabled = false;
+else {
+this.gameObject.GetComponent<PlayerMovement>().enabled = false
+;
 }
 testForWeapons = GameObject.Find("Weapon1Pickup(Clone)");
-if (testForWeapons == null)
+if (testForWeapons == null
+)
+{
+if (this.gameObject.GetComponent<PhotonView>().Owner.IsMasterClient == true)
 {
 var spawner = GameObject.Find("SpawnScript");
 spawner.GetComponent<SpawnCharacters>().SpawnWeaponsStart();
 }
 }
+}
 // Update is called once per frame
 void Update()
 {
-if (Input.GetMouseButtonDown(0) && isDead == false)
+if (Input.GetMouseButtonDown(0) && isDead == false && choosePanel.activeInHierarchy == false)
 {
-if (this.GetComponent<PhotonView>().IsMine == true)
+if (this.GetComponent<PhotonView>().IsMine == true && ammoAmts[weaponNumber] > 0)
 {
-GetComponent<DisplayColor>().PlayGunShot
-(GetComponent<PhotonView>().Owner.NickName, weaponNumber);
-this.GetComponent<PhotonView>().RPC("GunMuzzleFlash",
-RpcTarget.All);
+ammoAmts[weaponNumber]--;
+ammoAmtText.text = ammoAmts[weaponNumber].ToString();
+GetComponent<DisplayColor>().PlayGunShot(GetComponent<PhotonView>().Owner.NickName, weaponNumber);
+this.GetComponent<PhotonView>().RPC("GunMuzzleFlash", RpcTarget.All);
 RaycastHit hit;
 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-this.gameObject.layer = 2;
+this.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
 if (Physics.Raycast(ray, out hit, 500))
 {
-if (hit.transform.gameObject.GetComponent<PhotonView>
-() != null)
+if (hit.transform.gameObject.GetComponent<PhotonView>() != null)
 {
-gotShotName =
-hit.transform.gameObject.GetComponent<PhotonView>
-().Owner.NickName;
+gotShotName = hit.transform.gameObject.GetComponent<PhotonView>().Owner.NickName;
 }
-if (hit.transform.gameObject.GetComponent<DisplayColor>
-() != null)
+if (hit.transform.gameObject.GetComponent<DisplayColor>() != null)
 {
-hit.transform.gameObject.GetComponent<DisplayColor>
-().DeliverDamage
-(hit.transform.gameObject.GetComponent<PhotonView>
-().Owner.NickName, damageAmts[weaponNumber]);
+hit.transform.gameObject.GetComponent<DisplayColor>().DeliverDamage
+(this.GetComponent<PhotonView>().Owner.NickName,
+hit.transform.gameObject.GetComponent<PhotonView>().Owner.NickName, damageAmts
+[weaponNumber]);
 }
 shooterName = GetComponent<PhotonView>().Owner.NickName;
-Debug.Log(gotShotName + " got hit by " + shooterName);
 }
-this.gameObject.layer = 0;
+this.gameObject.layer = LayerMask.NameToLayer("Default");
 }
 }
-if (Input.GetMouseButtonDown(1) &&
-this.gameObject.GetComponent<PhotonView>().IsMine == true &&
-isDead == false)
+if (Input.GetMouseButtonDown(1) && this.gameObject.GetComponent<PhotonView>().IsMine == true && isDead ==
+false)
 {
 //weaponNumber++;
-this.GetComponent<PhotonView>().RPC("Change",
-RpcTarget.AllBuffered);
+this.GetComponent<PhotonView>().RPC("Change", RpcTarget.AllBuffered);
 if (weaponNumber > weapons.Length - 1)
 {
-weaponIcon.GetComponent<Image>().sprite = weaponIcons
-[0];
+weaponIcon.GetComponent<Image>().sprite = weaponIcons[0];
 ammoAmtText.text = ammoAmts[0].ToString();
 weaponNumber = 0;
 }
@@ -111,13 +123,16 @@ for (int i = 0; i < weapons.Length; i++)
 weapons[i].SetActive(false);
 }
 weapons[weaponNumber].SetActive(true);
-weaponIcon.GetComponent<Image>().sprite = weaponIcons
-[weaponNumber];
+weaponIcon.GetComponent<Image>().sprite = weaponIcons[weaponNumber];
 ammoAmtText.text = ammoAmts[weaponNumber].ToString();
 leftHand.data.target = leftTargets[weaponNumber];
 rightHand.data.target = rightTargets[weaponNumber];
 rig.Build();
 }
+}
+public void UpdatePickup()
+{
+ammoAmtText.text = ammoAmts[weaponNumber].ToString();
 }
 [PunRPC]
 void GunMuzzleFlash()
@@ -145,8 +160,7 @@ rig.Build();
 IEnumerator MuzzleOff()
 {
 yield return new WaitForSeconds(0.03f);
-this.GetComponent<PhotonView>().RPC("MuzzleFlashOff",
-RpcTarget.All);
+this.GetComponent<PhotonView>().RPC("MuzzleFlashOff", RpcTarget.All);
 }
 [PunRPC]
 void MuzzleFlashOff()

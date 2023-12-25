@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec5734f7ca5b894d8d7bb234ca9f7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomNumber: {fileID: 1469084858}
+  roomNumber: {fileID: 1469084856}
 --- !u!1 &262145534
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,19 +27,21 @@ myID = players[i].GetComponent<PhotonView>().ViewID;
 break;
 }
 }
-GetComponent<PhotonView>().RPC("SelectedColor",
-RpcTarget.AllBuffered, buttonNumber, myID);
-Cursor.visible = false;
+GetComponent<PhotonView>().RPC("SelectedColor", RpcTarget.AllBuffered, buttonNumber, myID);
+
+Cursor.visible = false
+;
 panel.SetActive(false);
-}
-[PunRPC]
-void SelectedColor(int buttonNumber, int myID)
+}[PunRPC
+]
+void SelectedColor
+(int buttonNumber, int myID)
 {
 players = GameObject.FindGameObjectsWithTag("Player");
-for (int i = 0; i < players.Length; i++)
+for
+(int i = 0; i < players.Length; i++)
 {
-players[i].GetComponent<DisplayColor>().viewID[buttonNumber] =
-myID;
+players[i].GetComponent<DisplayColor>().viewID[buttonNumber] = myID;
 players[i].GetComponent<DisplayColor>().ChooseColor();
 }
 namesObject.GetComponent<Timer>().BeginTimer();
