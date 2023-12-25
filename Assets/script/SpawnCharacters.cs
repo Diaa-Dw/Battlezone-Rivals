@@ -14,10 +14,14 @@ void Start()
 {
 if (PhotonNetwork.IsConnected)
 {
-PhotonNetwork.Instantiate(character.name, spawnPoints
+    StartCoroutine(SpawnPlayer());
+}
+}
+private IEnumerator SpawnPlayer(){
+    yield return new WaitForSeconds(2);
+    PhotonNetwork.Instantiate(character.name, spawnPoints
 [PhotonNetwork.CurrentRoom.PlayerCount - 1].position, spawnPoints
 [PhotonNetwork.CurrentRoom.PlayerCount - 1].rotation);
-}
 }
 // Update is called once per frame
 void Update()
