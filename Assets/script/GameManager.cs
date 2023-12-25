@@ -1,31 +1,30 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
-public class GameManager : MonoBehaviourPunCallbacks
-{
+public class GameManager : MonoBehaviourPunCallbacks {
 public InputField playerNickname;
-private string setName = "";
+private string setName = ""
+;
 public GameObject connecting;
 // Start is called before the first frame update
-void Start()
-{
+void Start() {
 connecting.SetActive(false);
 }
 // Update is called once per frame
-public void UpdateText()
-{
+public void UpdateText() {
 setName = playerNickname.text;
 PhotonNetwork.LocalPlayer.NickName = setName;
 }
-public void EnterButton()
+public void EnterButton() {
+if (setName != ""
+)
 {
-if (setName != "")
-{
-PhotonNetwork.AutomaticallySyncScene = true;
+PhotonNetwork.AutomaticallySyncScene = true
+;
 PhotonNetwork.ConnectUsingSettings();
 connecting.SetActive(true);
 }
@@ -36,9 +35,6 @@ Application.Quit();
 }
 public override void OnConnectedToMaster()
 {
-Debug.Log("I'm connected to the server!");
-//PhotonNetwork.JoinRandomRoom();
-    SceneManager.LoadScene("lobby");
+SceneManager.LoadScene("Lobby");
 }
-
 }

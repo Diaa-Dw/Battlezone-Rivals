@@ -23,8 +23,8 @@ namesObject = GameObject.Find("NamesBG");
 waitForPlayers = GameObject.Find("WaitingBG");
 InvokeRepeating("CheckTime", 1, 1);
 teamMode = namesObject.GetComponent<NickNamesScript>().teamMode;
-//isRespawn = namesObject.GetComponent<NickNamesScript>().noRespawn;
-//GetComponent<PlayerMovement>().noRespawn = isRespawn;
+isRespawn = namesObject.GetComponent<NickNamesScript>().noRespawn;
+GetComponent<PlayerMovement>().noRespawn = isRespawn;
 }
 private void Update()
 {
@@ -43,7 +43,7 @@ StartCoroutine(Recover());
 }
 public void NoRespawnExit()
 {
-//namesObject.GetComponent<NickNamesScript>().eliminationPanel.SetActive(true);
+namesObject.GetComponent<NickNamesScript>().eliminationPanel.SetActive(true);
 StartCoroutine(WaitToExit());
 }
 void CheckTime()
