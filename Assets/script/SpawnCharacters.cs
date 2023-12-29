@@ -17,10 +17,23 @@ if (PhotonNetwork.IsConnected)
     StartCoroutine(SpawnPlayer());
 }
 }
-private IEnumerator SpawnPlayer(){
+private IEnumerator SpawnPlayer()
+{
     yield return new WaitForSeconds(2);
-    PhotonNetwork.Instantiate(character.name, spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount - 1].position,
-spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount - 1].rotation);
+
+    // Check if spawnPoints is not null and has elements
+    if (spawnPoints != null && spawnPoints.Length > 0)
+    {
+        PhotonNetwork.Instantiate(
+            character.name,
+            spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount - 1].position,
+            spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount - 1].rotation
+        );
+    }
+    else
+    {
+        Debug.LogError("SpawnPoints array is not assigned or empty!");
+    }
 }
 // Update is called once per frame
  

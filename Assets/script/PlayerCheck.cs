@@ -19,3 +19,5 @@ currentPlayers.text = PhotonNetwork.CurrentRoom.PlayerCount.ToString
 () + "/" + maxPlayersInRoom.ToString();
 }
 }
+
+

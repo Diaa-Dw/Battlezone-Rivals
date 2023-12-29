@@ -9,14 +9,11 @@ void OnEnable() {
 StartCoroutine(SpawnStarting());
 }
 IEnumerator SpawnStarting() {
-spawnTime.text = "3"
-;
+spawnTime.text = "3";
 yield return new WaitForSeconds(1);
-spawnTime.text = "2"
-;
+spawnTime.text = "2";
 yield return new WaitForSeconds(1);
-spawnTime.text = "1"
-;
+spawnTime.text = "1";
 yield return new WaitForSeconds(1);
 this.gameObject.SetActive(false);
 }

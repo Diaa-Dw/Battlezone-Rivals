@@ -17,11 +17,9 @@ private void OnTriggerEnter(Collider other)
 {
 if (other.CompareTag("Player"))
 {
-this.GetComponent<PhotonView>().RPC("PlayPickupAudio",
-RpcTarget.All);
+this.GetComponent<PhotonView>().RPC("PlayPickupAudio", RpcTarget.All);
 this.GetComponent<PhotonView>().RPC("TurnOff", RpcTarget.All);
-other.GetComponent<WeaponChangeAdvanced>().ammoAmts[weaponType -
-1] += ammoRefillAmt;
+other.GetComponent<WeaponChangeAdvanced>().ammoAmts[weaponType - 1] += ammoRefillAmt;
 other.GetComponent<WeaponChangeAdvanced>().UpdatePickup();
 }
 }
@@ -29,44 +27,37 @@ other.GetComponent<WeaponChangeAdvanced>().UpdatePickup();
 void PlayPickupAudio()
 {
 audioPlayer.Play();
+}[PunRPC
+]
+void TurnOff() {
+if (weaponType == 1) {
+this.transform.gameObject.GetComponent<Renderer>().enabled = false
+;
+this.transform.gameObject.GetComponent<Collider>().enabled = false
+;
 }
-[PunRPC]
-void TurnOff()
-{
-if (weaponType == 1)
-{
-this.transform.gameObject.GetComponent<Renderer>().enabled =
-false;
-this.transform.gameObject.GetComponent<Collider>().enabled =
-false;
-}
-else
-{
+else {
 this.transform.GetChild(0).gameObject.SetActive(false);
-this.transform.gameObject.GetComponent<Collider>().enabled =
-false;
+this.transform.gameObject.GetComponent<Collider>().enabled = false
+;
 }
 StartCoroutine(WaitToRespawn());
+}[PunRPC
+]
+void TurnOn() {
+if (weaponType == 1) {
+this.transform.gameObject.GetComponent<Renderer>().enabled = true
+;
+this.transform.gameObject.GetComponent<Collider>().enabled = true
+;
 }
-[PunRPC]
-void TurnOn()
-{
-if (weaponType == 1)
-{
-this.transform.gameObject.GetComponent<Renderer>().enabled =
-true;
-this.transform.gameObject.GetComponent<Collider>().enabled =
-true;
-}
-else
-{
+else {
 this.transform.GetChild(0).gameObject.SetActive(true);
-this.transform.gameObject.GetComponent<Collider>().enabled =
-true;
+this.transform.gameObject.GetComponent<Collider>().enabled = true
+;
 }
 }
-IEnumerator WaitToRespawn()
-{
+IEnumerator WaitToRespawn() {
 yield return new WaitForSeconds(respawnTime);
 this.GetComponent<PhotonView>().RPC("TurnOn", RpcTarget.All);
 }

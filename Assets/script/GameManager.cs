@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +34,6 @@ Application.Quit();
 }
 public override void OnConnectedToMaster()
 {
-SceneManager.LoadScene("Lobby");
+SceneManager.LoadScene("lobby");
 }
 }

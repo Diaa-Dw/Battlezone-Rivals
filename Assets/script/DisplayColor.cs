@@ -29,9 +29,6 @@ private void Update()
 {
 if (Input.GetKeyDown(KeyCode.Escape))
 {
-Debug.Log("PhotonView: " + photonView);
-Debug.Log("PhotonView.IsMine: " + photonView.IsMine);
-Debug.Log("waitForPlayers: " + waitForPlayers);
 if (GetComponent<PhotonView>().IsMine == true)
 {
 RemoveData();
@@ -74,7 +71,8 @@ this.GetComponent<Animator>().SetBool("Dead", false);
 this.gameObject.GetComponent<WeaponChangeAdvanced>().isDead = false;
 this.gameObject.GetComponentInChildren<AimLookAtRef>().isDead = false;
 this.gameObject.layer = LayerMask.NameToLayer("Default");
-namesObject.GetComponent<NickNamesScript>().healthbars[i].gameObject.GetComponent<Image>().fillAmount =1;
+namesObject.GetComponent<NickNamesScript>().healthbars[i].gameObject.GetComponent<Image>().fillAmount =
+1;
 }
 }
 }

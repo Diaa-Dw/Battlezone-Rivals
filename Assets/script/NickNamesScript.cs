@@ -85,7 +85,6 @@ yield return new WaitForSeconds(0.4f);
 Cursor.visible = true
 ;
 PhotonNetwork.LeaveRoom();
-
 }
 public override void OnLeftRoom() {
 PhotonNetwork.LoadLevel("lobby");

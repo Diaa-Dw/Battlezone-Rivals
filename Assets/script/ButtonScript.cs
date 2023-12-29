@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +17,6 @@ namesObject = GameObject.Find("NamesBG");
 }
 public void SelectButton(int buttonNumber)
 {
-Debug.Log("Button Number: " + buttonNumber);
 players = GameObject.FindGameObjectsWithTag("Player");
 for (int i = 0; i < players.Length; i++)
 {
@@ -29,7 +27,6 @@ break;
 }
 }
 GetComponent<PhotonView>().RPC("SelectedColor", RpcTarget.AllBuffered, buttonNumber, myID);
-
 Cursor.visible = false
 ;
 panel.SetActive(false);

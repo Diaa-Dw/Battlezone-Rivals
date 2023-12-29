@@ -26,7 +26,6 @@ private Text ammoAmtText;
 public Sprite[] weaponIcons;
 public int[] ammoAmts;
 public GameObject[] muzzleFlash;
-
 private string shooterName
 ;
 private string gotShotName
