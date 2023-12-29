@@ -6,8 +6,9 @@ using Photon.Realtime;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class LobbyScript : MonoBehaviourPunCallbacks {
-TypedLobby killCount = new TypedLobby
-("killCount", LobbyType.Default);
+TypedLobby killCount = new TypedLobby("killCount", LobbyType.Default);
+TypedLobby killCount2 = new TypedLobby("killCount2", LobbyType.Default);
+
 TypedLobby teamBattle = new TypedLobby
 ("teamBattle", LobbyType.Default);
 TypedLobby noRespawn = new TypedLobby
@@ -27,6 +28,14 @@ levelName = "KillCount"
 ;
 PhotonNetwork.JoinLobby(killCount);
 }
+
+
+public void JoinGameKillCount2() {
+levelName = "KillCount2"
+;
+PhotonNetwork.JoinLobby(killCount2);
+}
+
 public void JoinGameTeamBattle()
 {
 levelName = "TeamBattle";

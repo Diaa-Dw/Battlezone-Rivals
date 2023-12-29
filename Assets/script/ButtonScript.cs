@@ -18,6 +18,7 @@ namesObject = GameObject.Find("NamesBG");
 }
 public void SelectButton(int buttonNumber)
 {
+Debug.Log("Button Number: " + buttonNumber);
 players = GameObject.FindGameObjectsWithTag("Player");
 for (int i = 0; i < players.Length; i++)
 {

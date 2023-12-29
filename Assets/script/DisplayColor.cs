@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,7 +29,7 @@ private void Update()
 {
 if (Input.GetKeyDown(KeyCode.Escape))
 {
-if (GetComponent<PhotonView>().IsMine == true && waitForPlayers.activeInHierarchy == false)
+if (GetComponent<PhotonView>() != null && GetComponent<PhotonView>().IsMine == true && waitForPlayers.activeInHierarchy == false)
 {
 RemoveData();
 RoomExit();
