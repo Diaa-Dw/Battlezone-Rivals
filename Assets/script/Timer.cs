@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour
 {
 public Text minutesText;
 public Text secondsText;
-public int minutes = 0;
+public int minutes = 4;
 public int seconds = 59;
 public GameObject Canvas;
 [HideInInspector]

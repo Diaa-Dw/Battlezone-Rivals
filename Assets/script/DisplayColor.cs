@@ -29,7 +29,10 @@ private void Update()
 {
 if (Input.GetKeyDown(KeyCode.Escape))
 {
-if (GetComponent<PhotonView>() != null && GetComponent<PhotonView>().IsMine == true && waitForPlayers.activeInHierarchy == false)
+Debug.Log("PhotonView: " + photonView);
+Debug.Log("PhotonView.IsMine: " + photonView.IsMine);
+Debug.Log("waitForPlayers: " + waitForPlayers);
+if (GetComponent<PhotonView>().IsMine == true)
 {
 RemoveData();
 RoomExit();
