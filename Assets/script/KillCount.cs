@@ -48,7 +48,7 @@ killAmts[i].text = highestKills[i].playerKills.ToString();
 }
 for (int i = 0; i < names.Length; i++)
 {
-if (names[i].text == "name")
+if (names[i].text == "Name")
 {
 names[i].text = "";
 killAmts[i].text = "";
@@ -82,7 +82,7 @@ killAmts[i].text = highestKills[i].playerKills.ToString();
 }
 for (int i = 0; i < names.Length; i++)
 {
-if (names[i].text == "name")
+if (names[i].text == "Name")
 {
 names[i].text = "";
 killAmts[i].text = "";

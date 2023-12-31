@@ -87,7 +87,7 @@ Canvas.GetComponent<KillCount>().NoRespawnWinner(GetComponent<PhotonView>().Owne
 }
 IEnumerator JumpAgain()
 {
-yield return new WaitForSeconds(1);
+yield return new WaitForSeconds(3);
 canJump = true;
 }
 IEnumerator RespawnWait()

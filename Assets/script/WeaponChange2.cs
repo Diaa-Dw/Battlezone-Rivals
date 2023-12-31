@@ -72,7 +72,7 @@ spawner.GetComponent<SpawnCharacters>().SpawnWeaponsStart();
 // Update is called once per frame
 void Update()
 {
-if (Input.GetMouseButtonDown(0) && isDead == false && choosePanel.activeInHierarchy == false)
+if (Input.GetMouseButtonDown(0) && isDead == false)
 {
 if (this.GetComponent<PhotonView>().IsMine == true && ammoAmts[weaponNumber] > 0)
 {

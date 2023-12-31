@@ -7589,8 +7589,8 @@ MonoBehaviour:
     rgba: 16621153
   gunShotSounds:
   - {fileID: 8300000, guid: 93fba0b1bf5014543918fa775911b6a3, type: 3}
-  - {fileID: 8300000, guid: 733a0ff7727334749a0381b7092162b3, type: 3}
-  - {fileID: 8300000, guid: 56f5b6fa20679894d8658d743a03e1e4, type: 3}
+  - {fileID: 8300000, guid: d12978e88d0c853419cf4b59ed4dc5f3, type: 3}
+  - {fileID: 8300000, guid: c054cd005fd07bb44be37a12f935ca6e, type: 3}
 --- !u!82 &444999292113082729
 AudioSource:
   m_ObjectHideFlags: 0
